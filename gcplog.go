@@ -180,7 +180,8 @@ func (s *Stackdriver) log(sev Severity, msg string, args ...interface{}) {
 	}
 }
 
-func (s *Stackdriver) structuredLog(sev Severity, msg string, args ...interface{}) {
+// Log is doing structural logging with provided severity.
+func (s *Stackdriver) Log(sev Severity, msg string, args ...interface{}) {
 	payload := formatPayload(msg, args...)
 	b, err := json.Marshal(payload)
 	if err != nil {
@@ -222,27 +223,27 @@ func (s *Stackdriver) Panicf(msg string, args ...interface{}) {
 
 // Debug sends debug log message.
 func (s *Stackdriver) Debug(msg string, args ...interface{}) {
-	s.structuredLog(logging.Debug, msg, args...)
+	s.Log(logging.Debug, msg, args...)
 }
 
 // Info sends info log message.
 func (s *Stackdriver) Info(msg string, args ...interface{}) {
-	s.structuredLog(logging.Info, msg, args...)
+	s.Log(logging.Info, msg, args...)
 }
 
 // Warn sends warn log message.
 func (s *Stackdriver) Warn(msg string, args ...interface{}) {
-	s.structuredLog(logging.Warning, msg, args...)
+	s.Log(logging.Warning, msg, args...)
 }
 
 // Error sends error log message.
 func (s *Stackdriver) Error(msg string, args ...interface{}) {
-	s.structuredLog(logging.Error, msg, args...)
+	s.Log(logging.Error, msg, args...)
 }
 
 // Crit sends critical log message followed by os.Exit(1).
 func (s *Stackdriver) Crit(msg string, args ...interface{}) {
-	s.structuredLog(logging.Critical, msg, args...)
+	s.Log(logging.Critical, msg, args...)
 	s.gcpLogger.Flush()
 	os.Exit(1)
 }
