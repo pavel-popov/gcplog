@@ -1,4 +1,4 @@
-module github.com/pavel-popov/gcplog
+module github.com/velppa/gcplog
 
 go 1.15
 

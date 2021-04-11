@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/pavel-popov/gcplog"
+	"github.com/velppa/gcplog"
 )
 
 func TestStandardLoggerSatisfiesInterface(t *testing.T) {
